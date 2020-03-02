@@ -4,17 +4,24 @@ import AppPresenter from "./AppPresenter";
 import Store from "store";
 
 class AppContainer extends Component {
-  state = {
-    message: "Hello"
-  };
-  // store 에 저장된 state 는 변경될때 마다 적용됨
-  componentDidMount = () => {
-    setTimeout(() => {
-      this.setState({
-        message: "bye"
-      });
-    }, 2000);
-  };
+  constructor(props) {
+    super(props);
+    this._changeMsg = () => {
+      if (this.state.message === "Hello") {
+        this.setState({
+          message: "Bye"
+        });
+      } else {
+        this.setState({
+          message: "Hello"
+        });
+      }
+    };
+    this.state = {
+      message: "Hello",
+      changeMsg: this._changeMsg
+    };
+  }
   render() {
     // <store.provider value={}> : Store 에 value 의 data 저장
     return (
