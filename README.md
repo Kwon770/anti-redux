@@ -96,9 +96,7 @@ class Container extends Component {
 const Presenter = () => (
   <Fragment>
     <Store.Consumer>
-      {store => (
-        <Button success seen={seen} onClick={store.changeMsg} />
-      )}
+      {store => <Button success seen={seen} onClick={store.changeMsg} />}
     </Store.Consumer>
   </Fragment>
 );
