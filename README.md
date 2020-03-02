@@ -44,7 +44,7 @@ class Container extends Component {
 
 ### Use data
 
-&#60;Store.Consumer&#62;{store => {}}&#60;/&#62; : store의 props 에 접근
+&#60;Store.Consumer&#62;{store => ()&#60;/&#62; : store의 props 에 접근
 
 ```js
 import Store from "store";
@@ -57,3 +57,49 @@ const Presenter = () => {
 ```
 
 ## Updating the store
+
+### Provider.js
+
+```js
+class Container extends Component {
+  constructor(props) {
+    super(props);
+    this._changeMsg = () => {
+      if (this.state.message === "Hello") {
+        this.setState({
+          message: "Bye"
+        });
+      } else {
+        this.setState({
+          message: "Hello"
+        });
+      }
+    };
+    this.state = {
+      message: "Hello",
+      changeMsg: this._changeMsg
+    };
+  }
+  render() {
+    return (
+      <Store.Provider value={this.state}>
+        <AppPresenter />
+      </Store.Provider>
+    );
+  }
+}
+```
+
+### Consumer.js
+
+```js
+const Presenter = () => (
+  <Fragment>
+    <Store.Consumer>
+      {store => (
+        <Button success seen={seen} onClick={store.changeMsg} />
+      )}
+    </Store.Consumer>
+  </Fragment>
+);
+```
