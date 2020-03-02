@@ -48,7 +48,7 @@ const getUnseen = notifications => {
   let unseen = [];
   Object.keys(notifications).map(key => {
     if (!notifications[key].seen) {
-      return unseen.push(notifications[key]);
+      unseen.push(notifications[key]);
     }
   });
   return unseen.length;

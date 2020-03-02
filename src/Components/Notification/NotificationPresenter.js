@@ -52,7 +52,7 @@ const Button = styled.button`
   }
 `;
 
-// <store.Consumer> : eleement 안에서 store props로 store 내 데이터 접근
+// <store.Consumer> : element 안에서 store props로 store 내 데이터 접근
 const NotificationPresenter = ({ id, text, seen }) => (
   <Notification seen={seen}>
     <Flex alignCenter justifyBetween>
@@ -61,14 +61,24 @@ const NotificationPresenter = ({ id, text, seen }) => (
         <Fragment>
           <Store.Consumer>
             {store => (
-              <Button success seen={seen} onClick={store.changeMsg}>
-                <FontAwesome name="check" />
-              </Button>
+              <>
+                <Button
+                  success
+                  seen={seen}
+                  onClick={() => store.seeNotification(id)}
+                >
+                  <FontAwesome name="check" />
+                </Button>
+                <Button
+                  danger
+                  seen={seen}
+                  onClick={() => store.deleteNotification(id)}
+                >
+                  <FontAwesome name="times" />
+                </Button>
+              </>
             )}
           </Store.Consumer>
-          <Button danger seen={seen} onClick={() => {}}>
-            <FontAwesome name="times" />
-          </Button>
         </Fragment>
       </FlexItem>
     </Flex>
