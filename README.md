@@ -58,6 +58,8 @@ const Presenter = () => {
 
 ## Updating the store
 
+### Method to send must be in constructor
+
 ### Provider.js
 
 ```js
